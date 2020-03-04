@@ -1,0 +1,26 @@
+---
+version: '3'
+services:
+
+# START SERVICE registry.base
+  registry:
+    image: ${CONTECO_REGISTRY}${CONTECO_REALM}/${CONTECO_ECOSYSTEM}.registry.base:2
+    environment: []
+    command: []
+    volumes: [package_registry_registry_volume:/var/lib/registry]
+    ports: [${CONTECO_DC_REGISTRY_PORTS}]
+    networks: [package_overlay]
+    deploy:
+      mode: replicated
+      resources:
+        limits:
+          cpus: '${CONTECO_DC_REGISTRY_DEPLOY_RESOURCES_LIMITS_CPUS}'
+          memory: '${CONTECO_DC_REGISTRY_DEPLOY_RESOURCES_LIMITS_MEMORY}'
+        reservations:
+          cpus: '${CONTECO_DC_REGISTRY_DEPLOY_RESOURCES_RESERVATIONS_CPUS}'
+          memory: '${CONTECO_DC_REGISTRY_DEPLOY_RESOURCES_RESERVATIONS_MEMORY}'
+      labels: [${CONTECO_DC_REGISTRY_DEPLOY_LABELS}]
+# END SERVICE registry.base
+
+volumes: {package_registry_registry_volume: { external: true }}
+networks: {package_overlay: { external: true }}
