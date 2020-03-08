@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 export CONTECO_LABEL="package.registry - ModEco"
-export CONTECO_DESCRIPTION="The regsitry module package."
+export CONTECO_DESCRIPTION="The registry module package."
 
 export CONTECO_TYPE="package"
 export CONTECO_NAME="registry"
