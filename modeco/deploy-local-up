@@ -7,7 +7,3 @@ if [[ "package_registry_registry_volume" == "$prefix"* ]] ; then
 	executionplane --silent docker volume create package_registry_registry_volume
 	fi
 	
-if [[ "package_registry_registry_volume" == "$prefix"* ]] ; then
-	executionplane --silent docker run -v package_registry_registry_volume:/var/lib/registry ${CONTECO_REGISTRY}$1 --interactive tar -C / -xvf /modeco/volumes/package_registry_registry_volume.tar
-	fi
-	

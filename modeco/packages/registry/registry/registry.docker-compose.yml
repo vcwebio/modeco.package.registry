@@ -4,7 +4,7 @@ services:
 
 # START SERVICE registry.base
   registry:
-    image: ${CONTECO_REGISTRY}${CONTECO_REALM}/${CONTECO_ECOSYSTEM}.registry.base:2
+    image: ${CONTECO_REGISTRY}${CONTECO_REALM_RUNTIME}/conteco.registry.base:2
     environment: []
     command: []
     volumes: [package_registry_registry_volume:/var/lib/registry]
