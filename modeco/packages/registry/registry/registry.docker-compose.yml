@@ -12,6 +12,7 @@ services:
     networks: [package_overlay]
     deploy:
       mode: replicated
+      replicas: ${REGISTRY_DEPLOY_REPLICAS}
       resources:
         limits:
           cpus: '${REGISTRY_DEPLOY_RESOURCES_LIMITS_CPUS}'
@@ -19,7 +20,10 @@ services:
         reservations:
           cpus: '${REGISTRY_DEPLOY_RESOURCES_RESERVATIONS_CPUS}'
           memory: '${REGISTRY_DEPLOY_RESOURCES_RESERVATIONS_MEMORY}'
+      placement:
+        constraints: [${REGISTRY_DEPLOY_PLACEMENT_CONSTRAINTS}]
       labels: [${REGISTRY_DEPLOY_LABELS}]
+    labels: [${REGISTRY_LABELS}]
 # END SERVICE registry.base
 
 volumes: {package_registry_registry_volume: { external: true }}
