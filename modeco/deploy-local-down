@@ -6,12 +6,12 @@ prefix="package_$2"
 
 executionplane --silent docker container prune --force
 
-if [[ "package_registry_registry_volume" == "$prefix"* ]] ; then
+if [[ "_registry_volume" == "$prefix"* ]] ; then
 		continue="true"
 		while [[ "true" == "$continue" ]] ;
 		do
-			executionplane docker volume rm "package_registry_registry_volume"
-			result=$(docker volume ls | grep "package_registry_registry_volume")
+			executionplane docker volume rm "_registry_volume"
+			result=$(docker volume ls | grep "_registry_volume")
 			if [[ "$result" == "" ]] ; then
 				continue="false"
 			else

@@ -7,24 +7,19 @@ services:
     image: ${CONTECO_REGISTRY}${CONTECO_REALM_RUNTIME}/conteco.registry.base:2
     environment: []
     command: []
-    volumes: [package_registry_registry_volume:/var/lib/registry]
+    volumes: [${CONTECO_STACKPREFIX}_registry_volume:/var/lib/registry]
     ports: [${REGISTRY_PORTS}]
-    networks: [package_overlay]
+    networks: [${CONTECO_NETWORKLOCAL}_overlay]
     deploy:
       mode: replicated
-      ${REGISTRY_DEPLOY_MODE_REPLICATED_REPLICAS}
       resources:
         limits:
-          cpus: '${REGISTRY_DEPLOY_RESOURCES_LIMITS_CPUS}'
           memory: '${REGISTRY_DEPLOY_RESOURCES_LIMITS_MEMORY}'
         reservations:
-          cpus: '${REGISTRY_DEPLOY_RESOURCES_RESERVATIONS_CPUS}'
           memory: '${REGISTRY_DEPLOY_RESOURCES_RESERVATIONS_MEMORY}'
-      placement:
-        constraints: [${REGISTRY_DEPLOY_PLACEMENT_CONSTRAINTS}]
-      labels: [${REGISTRY_DEPLOY_LABELS}]
-    labels: [${REGISTRY_LABELS}]
+${REGISTRY_COMPOSE_EXTENSIONS}
 # END SERVICE registry.base
 
-volumes: {package_registry_registry_volume: { external: true }}
-networks: {package_overlay: { external: true }}
+networks: {${CONTECO_NETWORKLOCAL}_overlay: { external: true }}
+volumes: {${CONTECO_STACKPREFIX}_registry_volume: { external: true }}
+${CONTECO_DC_GLOBAL_COMPOSE_EXTENSIONS}
